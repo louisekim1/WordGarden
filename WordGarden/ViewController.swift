@@ -34,10 +34,10 @@ class ViewController: UIViewController {
         guessedLetterTextField.text! = ""
         guessLetterButton.isEnabled = false
     }
+    
     @IBAction func guessedLetterFieldChanged(_ sender: UITextField) {
-        let text = guessedLetterTextField.text!
-        guessLetterButton.isEnabled = !(text.isEmpty)
-        
+        sender.text = String(sender.text?.last ?? " ").trimmingCharacters(in: .whitespaces)
+        guessLetterButton.isEnabled = !(sender.text!.isEmpty)
     }
     
     @IBAction func doneKeyPressed(_ sender: UITextField) {
@@ -52,4 +52,9 @@ class ViewController: UIViewController {
     }
 
 }
+
+//modify guessLetterFieldChanged so it tries to get the last letter the user has entered into guessedLetterTextField
+    //if the last letter is a vald character, then out this into the text property of guessedLetterTextField.
+    //if the last letter is not a valid character (nil), then put an empty string into the text property of guessedLetterTextfield
+
 
